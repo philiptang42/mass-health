@@ -1,1 +1,2 @@
 -- DEFINE YOUR DATABASE SCHEMA HERE
+CREATE TABLE geography (name varchar(255));
