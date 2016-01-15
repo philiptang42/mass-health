@@ -17,12 +17,17 @@ def to_integer(number)
   integer
 end
 
-def insert_records(town, formatted_info)
+def insert_records(town, formatted_numbers)
 
   record = [
     town['Geography'],
-    formatted_info[:geography],
-    formatted_info[:age_19_below],
+    formatted_numbers[:geography],
+    formatted_numbers[:age_19_below],
+    formatted_numbers[:age_65_plus],
+    town["Per Capita income, year 2000"],
+    formatted_numbers[:persons_below_200],
+    town["% all Persons Living Below 200% Poverty Level, year 2000"],
+    
 
 
   ]
