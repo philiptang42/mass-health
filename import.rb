@@ -21,5 +21,8 @@ def insert_records(town, formatted_info)
 
   record = [
     town['Geography'],
-    
+    formatted_info[:geography],
+    formatted_info[:age_19_below],
+
+
   ]
