@@ -21,8 +21,8 @@ towns.each do |town|
   db_connection do |conn|
     city = town[:geography]
     total_population_in_2005 = town[:total_pop_year_2005]
-    age_0_to_19_in_2005 integer,
-    age_65_plus_in_2005 integer,
+    age_0_to_19_in_2005 = town[:age_019_year_2005]
+    age_65_plus_in_2005 = town[:age_65_year_2005]
     per_capita_income_in_2000 varchar(255),
     persons_below_200_percent_poverty_in_2000 varchar(255),
     percentage_of_all_persons_below_200_poverty_in_2000 varchar(255),
