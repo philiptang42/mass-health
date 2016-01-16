@@ -1,5 +1,4 @@
 require 'csv'
-require 'csv'
 require 'pg'
 
 def db_connection
@@ -11,28 +10,27 @@ def db_connection
   end
 end
 
-def to_integer(number)
-  delete_comma = number.delete(",")
-  integer = delete_comma.to_i
-  integer
+towns = []
+
+CSV.foreach('mass-chip-data.csv', headers: true, header_converters: :symbol) do |row|
+  town = row.to_hash
+  towns << town
 end
 
-def insert_records(town, formatted_numbers)
-
-  record = [
-    town['Geography'],
-    formatted_numbers[:geography],
-    formatted_numbers[:age_19_below],
-    formatted_numbers[:age_65_plus],
-    town["Per Capita income, year 2000"],
-    formatted_numbers[:persons_below_200],
-    town["% all Persons Living Below 200% Poverty Level, year 2000"],
-    town["% adequacy prenatal care (kotelchuck)"],
-    town["% C-section deliveries, 2005-2008"],
-    formatted_numbers[:infant_deaths],
-    town["Infant mortality rate (deaths per 1000 live births), 2005-2008"],
-    town["% low birthweight 2005-2008"],
-    town["% multiple births, 2005-2008"],
-    town["% publicly financed prenatal care, 2005-2008"],
-    town["% teen births, 2005-2008"]
-  ]
+towns.each do |town|
+  db_connection do |conn|
+    city = town[:geography]
+    total_population_in_2005 = town[:total_pop_year_2005]
+    age_0_to_19_in_2005 integer,
+    age_65_plus_in_2005 integer,
+    per_capita_income_in_2000 varchar(255),
+    persons_below_200_percent_poverty_in_2000 varchar(255),
+    percentage_of_all_persons_below_200_poverty_in_2000 varchar(255),
+    percentage_adequacy_prenatal_care varchar(255),
+    percentage_C_section_deliveries_2005_to_2008 varchar(255),
+    infant_deaths_2005_to_2008 varchar(255),
+    infant_mortality_rate_2005_to_2008 varchar(255),
+    percentage_low_birthrate_2005_to_2008 varchar(255),
+    percentage_multiple_births_2005_to_2008 varchar(255),
+    percentage_publically_financed_prenatal_care_2005_to_2008 varchar(255),
+    percentage_teen_births_2005_to_2008 varchar(255)

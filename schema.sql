@@ -1,7 +1,7 @@
 -- DEFINE YOUR DATABASE SCHEMA HERE
 CREATE TABLE town_health_records (
   id serial PRIMARY KEY,
-  geography varchar(255),
+  city varchar(255),
   total_population_in_2005 integer,
   age_0_to_19_in_2005 integer,
   age_65_plus_in_2005 integer,
